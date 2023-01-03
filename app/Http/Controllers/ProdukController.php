@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelProduk;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ProdukController extends Controller
 {
@@ -14,7 +16,6 @@ class ProdukController extends Controller
     public function index()
     {
         return view('admin.dataproduk.index');
-
     }
 
     /**
@@ -35,7 +36,27 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 'nama_produk', 'harga_produk', 'keuntungan_harian', 'total_keunutngan', 'masa_kontrak'
+        $simpan = ModelProduk::create([
+            'nama_produk' => $request->get('nama_produk'),
+            'harga_produk' => $request->get('harga_produk'),
+            'keuntungan_harian' => $request->get('keuntungan_harian'),
+            'total_keuntungan' => $request->get('total_keuntungan'),
+            'masa_kontrak' => $request->get('masa_kontrak'),
+        ]);
+        if ($simpan) {
+            $response = array(
+                'status' => 'berhasil',
+                'data' => $simpan
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'data' => $simpan
+            );
+            return response()->json($response, 404);
+        }
     }
 
     /**
@@ -81,5 +102,22 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dataTable(Request $request)
+    {
+        if ($request->ajax()) {
+            $datas = ModelProduk::all();
+            return DataTables::of($datas)
+                ->addIndexColumn() //memberikan penomoran
+                ->addColumn('action', function ($row) {
+                    $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailProduk(' . $row->id_produk . ')"> <i class="fas fa-edit"></i> Edit</a>
+                        <a onclick="hapusProduk(' . $row->id_produk . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])   //merender content column dalam bentuk html
+                ->escapeColumns()  //mencegah XSS Attack
+                ->toJson(); //merubah response dalam bentuk Json
+        }
     }
 }

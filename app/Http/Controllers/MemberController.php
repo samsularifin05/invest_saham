@@ -111,26 +111,25 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $cek = ModelMember::where('username', $request->get('username'))
-        ->update([
-            'nama_lengkap' => $request->get('nama_lengkap'),
-            'no_hp' => $request->get('no_hp'),
-            'no_rekening' => $request->get('no_rekening'),
-            'alamat_lengkap' => $request->get('alamat_lengkap'),
-         ]);
-         if($cek){
-             $response = array(
-                 'status' => 'berhasil',
-                 'data' => $cek
-             );
-             return response()->json($response, 200);
-
-         }else{
-             $response = array(
-                 'status' => 'gagal',
-                 'pesan' => "Gagal Mengambil Data"
-             );
-         return response()->json($response, 404);
-         }
+            ->update([
+                'nama_lengkap' => $request->get('nama_lengkap'),
+                'no_hp' => $request->get('no_hp'),
+                'no_rekening' => $request->get('no_rekening'),
+                'alamat_lengkap' => $request->get('alamat_lengkap'),
+            ]);
+        if ($cek) {
+            $response = array(
+                'status' => 'berhasil',
+                'data' => $cek
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'pesan' => "Gagal Mengambil Data"
+            );
+            return response()->json($response, 404);
+        }
     }
 
     /**
@@ -164,14 +163,8 @@ class MemberController extends Controller
             return DataTables::of($datas)
                 ->addIndexColumn() //memberikan penomoran
                 ->addColumn('action', function ($row) {
-                    // $enc_id = \Crypt::encrypt($row->id);
-                    if ($row->username != "superadmin") {
-
-                        $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailMember(' . $row->id_member . ')"> <i class="fas fa-edit"></i> Edit</a>
+                    $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailMember(' . $row->id_member . ')"> <i class="fas fa-edit"></i> Edit</a>
                         <a onclick="hapusDataMember(' . $row->id_member . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
-                    } else {
-                        $btn = '';
-                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])   //merender content column dalam bentuk html

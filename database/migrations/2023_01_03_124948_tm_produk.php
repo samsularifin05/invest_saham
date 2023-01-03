@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->string('harga_produk');
             $table->string('keuntungan_harian');
-            $table->string('total_keunutngan');
+            $table->string('total_keuntungan');
             $table->string('masa_kontrak');
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.

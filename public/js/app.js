@@ -6553,6 +6553,116 @@ window.showDetailUsers = function (e) {
 
 /***/ }),
 
+/***/ "./resources/js/module/admin/Produk.js":
+/*!*********************************************!*\
+  !*** ./resources/js/module/admin/Produk.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper */ "./resources/js/module/helper.js");
+
+window.showModalProduk = function () {
+  $("#form_tambah_produk")[0].reset();
+  $("#is_edit").val(false);
+  document.getElementById("title_modal_produk").innerHTML = "Tambah Data User";
+  $("#ModalProduk").modal("show");
+};
+window.getDataProduk = function () {
+  var columns = [{
+    data: "DT_RowIndex",
+    name: "DT_Row_Index",
+    className: "text-center"
+  }, {
+    data: "nama_produk"
+  }, {
+    data: "harga_produk"
+  }, {
+    data: "keuntungan_harian"
+  }, {
+    data: "total_keuntungan"
+  }, {
+    data: "masa_kontrak"
+  }, {
+    data: "action",
+    orderable: false,
+    className: "text-center",
+    searchable: false
+  }];
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getDataTabel)("tbl_data_produk", "/get-data-produk", columns);
+};
+window.hapusDataProduk = function (e) {
+  Swal.fire({
+    icon: "info",
+    title: "Apakah Anda Ingin Mneghapus Data Ini ?",
+    showCancelButton: true,
+    confirmButtonText: "Hapus"
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.deteletData)("/data-produk/" + e).then(function (res) {
+        (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Dihapus");
+        getDataProduk();
+      })["catch"](function (err) {
+        var _err$response, _err$response$data, _err$response2, _err$response2$data;
+        (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : _err$response2$data.message));
+      });
+    }
+  });
+};
+window.simpanDataProduk = function (e) {
+  e.preventDefault();
+  var form_data = $("#form_tambah_produk").serializeArray();
+  var databaru = (0,_helper__WEBPACK_IMPORTED_MODULE_0__.serializeObject)(form_data);
+  if ((databaru === null || databaru === void 0 ? void 0 : databaru.is_edit) === "true") {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-produk/" + (databaru === null || databaru === void 0 ? void 0 : databaru.kode_jenis), form_data).then(function (res) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
+      $("#ModalProduk").modal("hide");
+      $("#form_tambah_produk")[0].reset();
+      getDataProduk();
+    })["catch"](function (err) {
+      var _err$response3, _err$response3$data, _err$response4, _err$response4$data;
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : (_err$response3$data = _err$response3.data) === null || _err$response3$data === void 0 ? void 0 : _err$response3$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response4 = err.response) === null || _err$response4 === void 0 ? void 0 : (_err$response4$data = _err$response4.data) === null || _err$response4$data === void 0 ? void 0 : _err$response4$data.message));
+    });
+  } else {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postData)("/data-produk", form_data).then(function (res) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
+      $("#ModalProduk").modal("hide");
+      $("#form_tambah_produk")[0].reset();
+      getDataProduk();
+    })["catch"](function (err) {
+      var _err$response5, _err$response5$data, _err$response6, _err$response6$data;
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response5 = err.response) === null || _err$response5 === void 0 ? void 0 : (_err$response5$data = _err$response5.data) === null || _err$response5$data === void 0 ? void 0 : _err$response5$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response6 = err.response) === null || _err$response6 === void 0 ? void 0 : (_err$response6$data = _err$response6.data) === null || _err$response6$data === void 0 ? void 0 : _err$response6$data.message));
+    });
+  }
+};
+window.showDetailMember = function (e) {
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getData)("/data-produk/" + e).then(function (res) {
+    if (res.data.status == "berhasil") {
+      res.data.data.forEach(function (el) {
+        $("#username").attr('readonly', 'readonly');
+        $("#is_edit").val(true);
+        $("#passwordhidden").hide();
+        $("#username").val(el.username);
+        $("#nama_lengkap").val(el.nama_lengkap);
+        $("#no_hp").val(el.no_hp);
+        $("#alamat_lengkap").val(el.alamat_lengkap);
+        $("#no_rekening").val(el.no_rekening);
+      });
+      document.getElementById("title_modal_produk").innerHTML = "Edit Data Member";
+      $("#ModalProduk").modal("show");
+    } else {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("error", res.pesan);
+      return false;
+    }
+  })["catch"](function (err) {
+    var _err$response7, _err$response7$data, _err$response8, _err$response8$data;
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response7 = err.response) === null || _err$response7 === void 0 ? void 0 : (_err$response7$data = _err$response7.data) === null || _err$response7$data === void 0 ? void 0 : _err$response7$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response8 = err.response) === null || _err$response8 === void 0 ? void 0 : (_err$response8$data = _err$response8.data) === null || _err$response8$data === void 0 ? void 0 : _err$response8$data.message));
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/module/admin/index.js":
 /*!********************************************!*\
   !*** ./resources/js/module/admin/index.js ***!
@@ -6561,6 +6671,7 @@ window.showDetailUsers = function (e) {
 
 __webpack_require__(/*! ./DataUsers */ "./resources/js/module/admin/DataUsers.js");
 __webpack_require__(/*! ./DataMember */ "./resources/js/module/admin/DataMember.js");
+__webpack_require__(/*! ./Produk */ "./resources/js/module/admin/Produk.js");
 
 /***/ }),
 

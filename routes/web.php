@@ -37,6 +37,8 @@ Route::group(['middleware' => ['cekloginadmin']], function () {
 
     //Produk
     Route::resource('/data-produk', ProdukController::class);
+    Route::get('/get-data-produk', [ProdukController::class, 'dataTable'])->name('data-produk.getDataAll');
+
 
 });
 

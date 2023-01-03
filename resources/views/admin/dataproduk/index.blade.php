@@ -24,9 +24,10 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="tbl_data_Produk" class="table table-bordered table-striped">
+                <table id="tbl_data_produk" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nama Produk</th>
                             <th>Harga Produk</th>
                             <th>Keuntungan Harian</th>
@@ -43,4 +44,11 @@
             <!-- /.card-body -->
         </div>
     </section>
+    @include('admin/dataproduk/create')
+
+    <script>
+        $(document).ready(function() {
+            getDataProduk()
+        })
+    </script>
 @stop
