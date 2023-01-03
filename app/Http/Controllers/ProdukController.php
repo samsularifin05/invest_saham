@@ -25,7 +25,7 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -67,7 +67,20 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        //
+        $cek = ModelMember::where('id_produk', '=', $id)->get();
+        if ($cek) {
+            $response = array(
+                'status' => 'berhasil',
+                'data' => $cek
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'pesan' => "Gagal Mengambil Data"
+            );
+            return response()->json($response, 404);
+        }
     }
 
     /**
@@ -101,7 +114,20 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hasil = ModelProduk::where('id_produk', $id)->delete();
+        if($hasil){
+             $response = array(
+                 'status' => 'berhasil',
+                 'pesan' =>'Data Berhasil Di hapus'
+             );
+             return response()->json($response, 200);
+         }else{
+             $response = array(
+                 'status' => 'error',
+                 'pesan' =>'Data Gagal Di hapus'
+             );
+             return response()->json($response, 200);
+         }
     }
 
     public function dataTable(Request $request)
@@ -112,7 +138,7 @@ class ProdukController extends Controller
                 ->addIndexColumn() //memberikan penomoran
                 ->addColumn('action', function ($row) {
                     $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailProduk(' . $row->id_produk . ')"> <i class="fas fa-edit"></i> Edit</a>
-                        <a onclick="hapusProduk(' . $row->id_produk . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
+                        <a onclick="hapusDataProduk(' . $row->id_produk . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])   //merender content column dalam bentuk html
