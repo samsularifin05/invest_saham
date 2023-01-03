@@ -70,7 +70,7 @@ window.simpanDataProduk = function (e) {
     let databaru = serializeObject(form_data);
     if (databaru?.is_edit === "true") {
 
-        putData("/data-produk/" + databaru?.kode_jenis, form_data)
+        putData("/data-produk/" + databaru?.id_produk, form_data)
             .then((res) => {
                 ToastNotification("success", "Data Berhasil Disimpan");
                 $("#ModalProduk").modal("hide");
@@ -100,19 +100,18 @@ window.simpanDataProduk = function (e) {
     }
 };
 
-window.showDetailMember= function (e) {
+window.showDetailProduk= function (e) {
     getData("/data-produk/" + e)
     .then((res) => {
         if (res.data.status == "berhasil") {
             res.data.data.forEach((el) => {
-                $("#username").attr('readonly', 'readonly');
                 $("#is_edit").val(true);
-                $("#passwordhidden").hide();
-                $("#username").val(el.username);
-                $("#nama_lengkap").val(el.nama_lengkap);
-                $("#no_hp").val(el.no_hp);
-                $("#alamat_lengkap").val(el.alamat_lengkap);
-                $("#no_rekening").val(el.no_rekening);
+                $("#nama_produk").val(el.nama_produk);
+                $("#id_produk").val(el.id_produk);
+                $("#harga_produk").val(el.harga_produk);
+                $("#keuntungan_harian").val(el.keuntungan_harian);
+                $("#total_keuntungan").val(el.total_keuntungan);
+                $("#masa_kontrak").val(el.masa_kontrak);
             });
             document.getElementById("title_modal_produk").innerHTML = "Edit Data Member";
             $("#ModalProduk").modal("show");

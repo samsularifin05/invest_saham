@@ -67,7 +67,7 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        $cek = ModelMember::where('id_produk', '=', $id)->get();
+        $cek = ModelProduk::where('id_produk', '=', $id)->get();
         if ($cek) {
             $response = array(
                 'status' => 'berhasil',
@@ -103,7 +103,27 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cek = ModelProduk::where('id_prpduk', $request->get('id_produk'))
+            ->update([
+                'nama_produk' => $request->get('nama_produk'),
+                'harga_produk' => $request->get('harga_produk'),
+                'keuntungan_harian' => $request->get('keuntungan_harian'),
+                'total_keuntungan' => $request->get('total_keuntungan'),
+                'masa_kontrak' => $request->get('masa_kontrak'),
+            ]);
+        if ($cek) {
+            $response = array(
+                'status' => 'berhasil',
+                'data' => $cek
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'pesan' => "Gagal Mengambil Data"
+            );
+            return response()->json($response, 404);
+        }
     }
 
     /**

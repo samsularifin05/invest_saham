@@ -6615,7 +6615,7 @@ window.simpanDataProduk = function (e) {
   var form_data = $("#form_tambah_produk").serializeArray();
   var databaru = (0,_helper__WEBPACK_IMPORTED_MODULE_0__.serializeObject)(form_data);
   if ((databaru === null || databaru === void 0 ? void 0 : databaru.is_edit) === "true") {
-    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-produk/" + (databaru === null || databaru === void 0 ? void 0 : databaru.kode_jenis), form_data).then(function (res) {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-produk/" + (databaru === null || databaru === void 0 ? void 0 : databaru.id_produk), form_data).then(function (res) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
       $("#ModalProduk").modal("hide");
       $("#form_tambah_produk")[0].reset();
@@ -6636,18 +6636,17 @@ window.simpanDataProduk = function (e) {
     });
   }
 };
-window.showDetailMember = function (e) {
+window.showDetailProduk = function (e) {
   (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getData)("/data-produk/" + e).then(function (res) {
     if (res.data.status == "berhasil") {
       res.data.data.forEach(function (el) {
-        $("#username").attr('readonly', 'readonly');
         $("#is_edit").val(true);
-        $("#passwordhidden").hide();
-        $("#username").val(el.username);
-        $("#nama_lengkap").val(el.nama_lengkap);
-        $("#no_hp").val(el.no_hp);
-        $("#alamat_lengkap").val(el.alamat_lengkap);
-        $("#no_rekening").val(el.no_rekening);
+        $("#nama_produk").val(el.nama_produk);
+        $("#id_produk").val(el.id_produk);
+        $("#harga_produk").val(el.harga_produk);
+        $("#keuntungan_harian").val(el.keuntungan_harian);
+        $("#total_keuntungan").val(el.total_keuntungan);
+        $("#masa_kontrak").val(el.masa_kontrak);
       });
       document.getElementById("title_modal_produk").innerHTML = "Edit Data Member";
       $("#ModalProduk").modal("show");

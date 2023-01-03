@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-12">
                             <input class="form-control" id="is_edit" autocomplete="off" type="hidden" name="is_edit">
-                            <input class="form-control" id="level" autocomplete="off" type="hidden" value="admin" name="level">
+                            <input class="form-control" id="id_produk" autocomplete="off" type="text" value="" name="id_produk">
                         </div>
                         <div class="col-12">
                             <label> Nama Produk  </label>
