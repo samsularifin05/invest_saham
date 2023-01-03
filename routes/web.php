@@ -39,12 +39,14 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
 
 Route::group(['middleware' => ['cekloginmember']], function () {
     Route::get('/dashboard-member', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+        return view('member.dashboard.index');
+    })->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::group(['middleware' => ['ceksessionmember']], function () {
-    Route::post('/cek-login-member', [AuthController::class, 'checkloginAdmin'])->name('cek-login-member');
+    Route::post('/cek-login-member', [AuthController::class, 'checkloginMember'])->name('cek-login-member');
     Route::get('/', [AuthController::class, 'loginmember'])->name('login-member');
+    Route::get('/daftar-member', [AuthController::class, 'daftarmember'])->name('daftar-member');
+    Route::post('/register-member', [AuthController::class, 'savemember'])->name('save-member');
 });
