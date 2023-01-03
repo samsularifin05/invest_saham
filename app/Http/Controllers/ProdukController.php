@@ -103,7 +103,7 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cek = ModelProduk::where('id_prpduk', $request->get('id_produk'))
+        $cek = ModelProduk::where('id_produk', $request->get('id_produk'))
             ->update([
                 'nama_produk' => $request->get('nama_produk'),
                 'harga_produk' => $request->get('harga_produk'),
