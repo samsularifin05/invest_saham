@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tt_history_pembelian_paket', function (Blueprint $table) {
             $table->id('id_detail_paket');
+            $table->string('id_pembelian_paket');
             $table->string('tanggal');
             $table->string('keuntungan_harian');
             $table->string('total_keuntungan');
