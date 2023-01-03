@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('no_rekening');
             $table->string('alamat_lengkap');
+            $table->string('saldo');
             $table->string('password');
+            $table->string('kode_referal');
             $table->timestamps();
         });
     }

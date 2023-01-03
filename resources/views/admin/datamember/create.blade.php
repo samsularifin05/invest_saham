@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="ModalDataUsers">
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalDataMember">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-12">
                             <label> Alamat  </label>
-                            <input class="form-control" id="alamat" autocomplete="off" type="text" name="alamat"
+                            <input class="form-control" id="alamat_lengkap" autocomplete="off" type="text" name="alamat_lengkap"
                                 placeholder="Alamat" required>
                             <br>
                         </div>

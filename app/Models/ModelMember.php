@@ -10,6 +10,6 @@ class ModelMember extends Model
     use HasFactory;
     protected $table = 'tm_member';
     protected $fillable = [
-        'username', 'nama_lengkap', 'no_hp', 'no_rekening', 'alamat_lengkap', 'password',
+        'username', 'nama_lengkap', 'no_hp', 'no_rekening', 'alamat_lengkap', 'password','saldo','kode_referal'
     ];
 }

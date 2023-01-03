@@ -21,16 +21,16 @@ window.getDataMember = function () {
             data: "username",
         },
         {
-            data: "Nama Lengkap",
+            data: "nama_lengkap",
         },
         {
-            data: "No Hp",
+            data: "no_hp",
         },
         {
-            data: "No Rekening",
+            data: "no_rekening",
         },
         {
-            data: "ALamat",
+            data: "alamat_lengkap",
         },
         {
             data: "action",
@@ -50,7 +50,7 @@ window.hapusDataMember = function (e){
         confirmButtonText: "Hapus",
     }).then((result) => {
         if (result.isConfirmed) {
-            deteletData("/data-user/" + e)
+            deteletData("/data-member/" + e)
                 .then((res) => {
                     ToastNotification("success", "Data Berhasil Dihapus");
                     getDataMember();
@@ -72,7 +72,7 @@ window.simpanDataMember = function (e) {
     let databaru = serializeObject(form_data);
     if (databaru?.is_edit === "true") {
 
-        putData("/data-user/" + databaru?.kode_jenis, form_data)
+        putData("/data-member/" + databaru?.kode_jenis, form_data)
             .then((res) => {
                 ToastNotification("success", "Data Berhasil Disimpan");
                 $("#ModalDataMember").modal("hide");
@@ -90,7 +90,7 @@ window.simpanDataMember = function (e) {
             ToastNotification("info", "Password Tidak Boleh Kosong");
             return false
         }
-        postData("/data-user", form_data)
+        postData("/data-member", form_data)
             .then((res) => {
                 ToastNotification("success", "Data Berhasil Disimpan");
                 $("#ModalDataMember").modal("hide");
@@ -107,7 +107,7 @@ window.simpanDataMember = function (e) {
 };
 
 window.showDetailMember= function (e) {
-    getData("/data-user/" + e)
+    getData("/data-member/" + e)
     .then((res) => {
         if (res.data.status == "berhasil") {
             res.data.data.forEach((el) => {
@@ -116,8 +116,11 @@ window.showDetailMember= function (e) {
                 $("#passwordhidden").hide();
                 $("#username").val(el.username);
                 $("#nama_lengkap").val(el.nama_lengkap);
+                $("#no_hp").val(el.no_hp);
+                $("#alamat_lengkap").val(el.alamat_lengkap);
+                $("#no_rekening").val(el.no_rekening);
             });
-            document.getElementById("title_modal_member").innerHTML = "Edit Data User";
+            document.getElementById("title_modal_member").innerHTML = "Edit Data Member";
             $("#ModalDataMember").modal("show");
         } else {
             ToastNotification("error", res.pesan);

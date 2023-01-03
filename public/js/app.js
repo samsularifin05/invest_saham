@@ -6356,13 +6356,13 @@ window.getDataMember = function () {
   }, {
     data: "username"
   }, {
-    data: "Nama Lengkap"
+    data: "nama_lengkap"
   }, {
-    data: "No Hp"
+    data: "no_hp"
   }, {
-    data: "No Rekening"
+    data: "no_rekening"
   }, {
-    data: "ALamat"
+    data: "alamat_lengkap"
   }, {
     data: "action",
     orderable: false,
@@ -6379,7 +6379,7 @@ window.hapusDataMember = function (e) {
     confirmButtonText: "Hapus"
   }).then(function (result) {
     if (result.isConfirmed) {
-      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.deteletData)("/data-user/" + e).then(function (res) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.deteletData)("/data-member/" + e).then(function (res) {
         (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Dihapus");
         getDataMember();
       })["catch"](function (err) {
@@ -6394,7 +6394,7 @@ window.simpanDataMember = function (e) {
   var form_data = $("#form_tambah_member").serializeArray();
   var databaru = (0,_helper__WEBPACK_IMPORTED_MODULE_0__.serializeObject)(form_data);
   if ((databaru === null || databaru === void 0 ? void 0 : databaru.is_edit) === "true") {
-    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-user/" + (databaru === null || databaru === void 0 ? void 0 : databaru.kode_jenis), form_data).then(function (res) {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-member/" + (databaru === null || databaru === void 0 ? void 0 : databaru.kode_jenis), form_data).then(function (res) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
       $("#ModalDataMember").modal("hide");
       $("#form_tambah_member")[0].reset();
@@ -6408,7 +6408,7 @@ window.simpanDataMember = function (e) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", "Password Tidak Boleh Kosong");
       return false;
     }
-    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postData)("/data-user", form_data).then(function (res) {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postData)("/data-member", form_data).then(function (res) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
       $("#ModalDataMember").modal("hide");
       $("#form_tambah_member")[0].reset();
@@ -6420,7 +6420,7 @@ window.simpanDataMember = function (e) {
   }
 };
 window.showDetailMember = function (e) {
-  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getData)("/data-user/" + e).then(function (res) {
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getData)("/data-member/" + e).then(function (res) {
     if (res.data.status == "berhasil") {
       res.data.data.forEach(function (el) {
         $("#username").attr('readonly', 'readonly');
@@ -6428,8 +6428,11 @@ window.showDetailMember = function (e) {
         $("#passwordhidden").hide();
         $("#username").val(el.username);
         $("#nama_lengkap").val(el.nama_lengkap);
+        $("#no_hp").val(el.no_hp);
+        $("#alamat_lengkap").val(el.alamat_lengkap);
+        $("#no_rekening").val(el.no_rekening);
       });
-      document.getElementById("title_modal_member").innerHTML = "Edit Data User";
+      document.getElementById("title_modal_member").innerHTML = "Edit Data Member";
       $("#ModalDataMember").modal("show");
     } else {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("error", res.pesan);

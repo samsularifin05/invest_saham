@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tt_pembelian_paket', function (Blueprint $table) {
             $table->id();
             $table->string('id_member');
-            $table->string('id_paket');
+            $table->string('id_produk');
             $table->string('id_detail_paket');
             $table->string('tanggal_mulai');
             $table->string('tanggal_selesai');

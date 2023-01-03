@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tt_history_pembelian_paket', function (Blueprint $table) {
-            $table->id('id_detail_paket');
-            $table->string('tanggal');
-            $table->string('keuntungan_harian');
-            $table->string('total_keuntungan');
+        Schema::create('tm_referal', function (Blueprint $table) {
+            $table->id('id_member');
+            $table->string('kode_referal');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tt_history_pembelian_paket');
+        //
     }
 };
