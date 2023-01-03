@@ -7,7 +7,7 @@
         </p>
     </a>
     <ul class="nav nav-treeview"
-        style="display: <?= $thisPage === '/data-customer' || $thisPage === '/data-member' || $thisPage === '/data-bahan' || $thisPage === '/data-user' || $thisPage === '/data-jenis' ? 'block;' : 'none;' ?>">
+        style="display: <?= $thisPage === '/data-produk' || $thisPage === '/data-member'  || $thisPage === '/data-user' ? 'block;' : 'none;' ?>">
         <li class="nav-item">
             <a href="{{ route('data-user.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -21,7 +21,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('data-produk.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Produk</p>
             </a>

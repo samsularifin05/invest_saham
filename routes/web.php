@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +24,20 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['cekloginadmin']], function () {
 
     Route::get('/dashboard-admin', [DashboardController::class, 'DashboardAdmin'])->name('dashboard-admin');
-
     Route::get('/logout-admin', [AuthController::class, 'logoutadmin'])->name('logout-admin');
+
+
+    // User
     Route::resource('/data-user', DataUserControllers::class);
     Route::get('/get-data-users', [DataUserControllers::class, 'dataTable'])->name('data-users.getDataAll');
 
+    //Member
     Route::resource('/data-member', MemberController::class);
     Route::get('/get-data-member', [MemberController::class, 'dataTable'])->name('data-member.getDataAll');
+
+    //Produk
+    Route::resource('/data-produk', ProdukController::class);
+
 });
 
 Route::group(['middleware' => ['ceksessionadmin']], function () {
