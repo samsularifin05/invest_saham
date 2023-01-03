@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::middleware(['usersession'])->group(function () {
 Route::group(['middleware' => ['cekloginadmin']], function () {
-    Route::get('/dashboard-admin', function () {
-        return view('admin.dashboard.index');
-    })->name('dashboard-admin');
+
+    Route::get('/dashboard-admin', [DashboardController::class, 'DashboardAdmin'])->name('dashboard-admin');
 
     Route::get('/logout-admin', [AuthController::class, 'logoutadmin'])->name('logout-admin');
     Route::resource('/data-user', DataUserControllers::class);
@@ -38,9 +38,7 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
 });
 
 Route::group(['middleware' => ['cekloginmember']], function () {
-    Route::get('/dashboard-member', function () {
-        return view('member.dashboard.index');
-    })->name('dashboard-member');
+    Route::get('/dashboard-member', [DashboardController::class, 'DashboardMember'])->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
