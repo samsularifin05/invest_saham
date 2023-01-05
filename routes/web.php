@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\PembelianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+/**
+ * start admin route
+ */
 // Route::middleware(['usersession'])->group(function () {
 Route::group(['middleware' => ['cekloginadmin']], function () {
 
@@ -47,9 +50,20 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
     Route::get('/login-admin', [AuthController::class, 'loginadmin'])->name('login-admin');
 });
 
+/**
+ * end admin route
+ */
+
+/**
+  * start member route
+  */
 Route::group(['middleware' => ['cekloginmember']], function () {
     Route::get('/dashboard-member', [DashboardController::class, 'DashboardMember'])->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    //Pembelian
+    Route::resource('/pembelian', PembelianController::class);
+    Route::get('/get-pembelian', [PembelianController::class, 'dataTable'])->name('pembelian.getDataAll');
 });
 
 Route::group(['middleware' => ['ceksessionmember']], function () {
@@ -58,3 +72,7 @@ Route::group(['middleware' => ['ceksessionmember']], function () {
     Route::get('/daftar-member', [AuthController::class, 'daftarmember'])->name('daftar-member');
     Route::post('/register-member', [AuthController::class, 'savemember'])->name('save-member');
 });
+
+/**
+ * end member route
+ */
