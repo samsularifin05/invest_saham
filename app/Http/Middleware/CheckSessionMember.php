@@ -19,7 +19,7 @@ class CheckSessionMember
     {
         $token= Session::get('datauser');
         if ($token <> "") {
-            return redirect('/dashboard');
+            return redirect('/dashboard-member');
         } else {
             return $next($request);
         }
