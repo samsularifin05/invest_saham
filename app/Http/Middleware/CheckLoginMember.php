@@ -17,10 +17,14 @@ class CheckLoginMember
      */
     public function handle(Request $request, Closure $next)
     {
-        $data= Session::get('datauser');
+        $data = Session::get('datauser');
         if ($data == null) {
-            return redirect()->route('login');
-        }else{
+            if ($data?->level === "admin") {
+                return redirect()->route('login-admin');
+            } else {
+                return redirect()->route('login-member');
+            }
+        } else {
             return $next($request);
         }
     }

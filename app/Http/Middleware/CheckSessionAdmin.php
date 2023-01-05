@@ -19,7 +19,11 @@ class CheckSessionAdmin
     {
         $token= Session::get('datauser');
         if ($token <> "") {
-            return redirect('/dashboard-admin');
+            if ($token?->level === "admin") {
+                return  redirect('/dashboard-admin');
+            } else {
+                return  redirect('/dashboard-member');
+            }
         } else {
             return $next($request);
         }

@@ -19,7 +19,11 @@ class CheckLoginAdmin
     {
         $data= Session::get('datauser');
         if ($data == null) {
-            return redirect()->route('login-admin');
+            if ($data?->level === "admin") {
+                return redirect()->route('login-admin');
+            } else {
+                return redirect()->route('login-member');
+            }
         }else{
             return $next($request);
         }

@@ -17,9 +17,15 @@ class CheckSessionMember
      */
     public function handle(Request $request, Closure $next)
     {
-        $token= Session::get('datauser');
+        $token = Session::get('datauser');
+        // echo $token->level;
+        // die;
         if ($token <> "") {
-            return redirect('/dashboard-member');
+            if ($token?->level === "admin") {
+                return  redirect('/dashboard-admin');
+            } else {
+                return  redirect('/dashboard-member');
+            }
         } else {
             return $next($request);
         }
