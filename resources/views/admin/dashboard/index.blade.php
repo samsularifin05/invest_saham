@@ -7,7 +7,7 @@
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3> 2</h3>
+                <h3> <?= $data['dataMember'] ?> </h3>
                 <p>Total Member AKtif</p>
             </div>
             <div class="icon">
