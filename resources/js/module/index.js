@@ -1,5 +1,6 @@
 require("./helper")
 require("./admin/index")
+require("./member/index")
 
 
 window.formatRupiah = function(angka){
