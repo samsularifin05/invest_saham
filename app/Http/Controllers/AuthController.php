@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ModelMember;
 use App\Models\ModelUsers;
 use Illuminate\Http\Request;
-use Validator;
+// use Validator;
 
 class AuthController extends Controller
 {

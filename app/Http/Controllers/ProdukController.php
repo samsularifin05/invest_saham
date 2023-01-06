@@ -161,6 +161,15 @@ class ProdukController extends Controller
                         <a onclick="hapusDataProduk(' . $row->id_produk . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
                     return $btn;
                 })
+                ->editColumn('harga_produk', function ($data) {
+                    return number_format($data->harga_produk, 0);
+                })
+                ->editColumn('keuntungan_harian', function ($data) {
+                    return number_format($data->keuntungan_harian, 0);
+                })
+                ->editColumn('total_keuntungan', function ($data) {
+                    return number_format($data->total_keuntungan, 0);
+                })
                 ->rawColumns(['action'])   //merender content column dalam bentuk html
                 ->escapeColumns()  //mencegah XSS Attack
                 ->toJson(); //merubah response dalam bentuk Json
