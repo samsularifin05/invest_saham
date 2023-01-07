@@ -57,6 +57,10 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
 /**
   * start member route
   */
+  Route::get('/mobile', function () {
+    return view('member.index');
+});
+
 Route::group(['middleware' => ['cekloginmember']], function () {
     Route::get('/dashboard-member', [DashboardController::class, 'DashboardMember'])->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

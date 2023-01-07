@@ -63,9 +63,9 @@ class AuthController extends Controller
                 'no_hp' => $request->get('no_hp'),
                 'nama_lengkap' => $request->get('nama_lengkap'),
                 'no_rekening' => '-',
-                'alamat_lengkap' => $request->get('alamat_lengkap'),
+                'alamat_lengkap' => '-',
                 'saldo' => 0,
-                'kode_referal' => '-',
+                'kode_referal' => $request->get('kode_referal') ? $request->get('kode_referal') :'-' ,
                 'password' => bcrypt($request->get('password')),
             ]);
             if ($simpan) {

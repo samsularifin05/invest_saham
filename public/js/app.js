@@ -6699,6 +6699,7 @@ var base_url = $('meta[name="base_url"]').attr('content');
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "$": () => (/* reexport default from dynamic */ jquery__WEBPACK_IMPORTED_MODULE_1___default.a),
 /* harmony export */   "ToastNotification": () => (/* binding */ ToastNotification),
 /* harmony export */   "deteletData": () => (/* binding */ deteletData),
 /* harmony export */   "getData": () => (/* binding */ getData),
@@ -6707,19 +6708,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "putData": () => (/* binding */ putData),
 /* harmony export */   "serializeObject": () => (/* binding */ serializeObject)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _base_url_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base_url.js */ "./resources/js/module/base_url.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
 function getData(endpoint) {
   var config = {
     headers: {
-      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
     }
   };
   return new Promise(function (resolve, reject) {
-    axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, config).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -6729,12 +6734,12 @@ function getData(endpoint) {
 function putData(endpoint, form_data) {
   var config = {
     headers: {
-      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
     }
   };
   var data = serializeObject(form_data);
   return new Promise(function (resolve, reject) {
-    axios__WEBPACK_IMPORTED_MODULE_1__["default"].put(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].put(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -6744,12 +6749,12 @@ function putData(endpoint, form_data) {
 function postData(endpoint, form_data) {
   var config = {
     headers: {
-      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
     }
   };
   var data = serializeObject(form_data);
   return new Promise(function (resolve, reject) {
-    axios__WEBPACK_IMPORTED_MODULE_1__["default"].post(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -6759,11 +6764,11 @@ function postData(endpoint, form_data) {
 function deteletData(endpoint) {
   var config = {
     headers: {
-      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")
     }
   };
   return new Promise(function (resolve, reject) {
-    axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"](_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, config).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"](_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -6771,7 +6776,7 @@ function deteletData(endpoint) {
   });
 }
 function getDataTabel(id_tabel, url, columns) {
-  $("#".concat(id_tabel)).DataTable({
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(id_tabel)).DataTable({
     pageLength: 10,
     lengthChange: true,
     bFilter: true,
@@ -6811,7 +6816,7 @@ var Toast = Swal.mixin({
 });
 function serializeObject(obj) {
   var jsn = {};
-  $.each(obj, function () {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default().each(obj, function () {
     if (jsn[this.name]) {
       if (!jsn[this.name].push) {
         jsn[this.name] = [jsn[this.name]];
@@ -20067,6 +20072,19 @@ return jQuery;
 /*!********************************!*\
   !*** ./resources/css/app.scss ***!
   \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/mobile/css/mobile.css":
+/*!*****************************************!*\
+  !*** ./resources/mobile/css/mobile.css ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -52701,6 +52719,18 @@ DataTable.use = function (module, type) {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -52750,7 +52780,8 @@ DataTable.use = function (module, type) {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
+/******/ 			"css/app": 0,
+/******/ 			"css/mobile": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -52800,8 +52831,9 @@ DataTable.use = function (module, type) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/mobile"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/mobile"], () => (__webpack_require__("./resources/css/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/mobile"], () => (__webpack_require__("./resources/mobile/css/mobile.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -1,7 +1,12 @@
 import Axios from 'axios';
 import { base_url } from "./base_url.js";
+import $ from "jquery";
+
 window.Swal = require("sweetalert2");
 
+export {
+    $
+}
 export function getData(endpoint) {
     let config = {
       headers: {
