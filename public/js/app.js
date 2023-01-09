@@ -6330,6 +6330,113 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "./resources/js/module/admin/DataHadiah.js":
+/*!*************************************************!*\
+  !*** ./resources/js/module/admin/DataHadiah.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper */ "./resources/js/module/helper.js");
+
+window.showModalHadiah = function () {
+  $("#form_tambah_hadiah")[0].reset();
+  $("#is_edit").val(false);
+  document.getElementById("title_modal_hadiah").innerHTML = "Tambah Data Hadiah";
+  $("#ModalHadiah").modal("show");
+};
+window.getDataHadiah = function () {
+  var columns = [{
+    data: "DT_RowIndex",
+    name: "DT_Row_Index",
+    className: "text-center"
+  }, {
+    data: "kode_hadiah"
+  }, {
+    data: "kouta"
+  }, {
+    data: "total_nominal_hadiah"
+  }, {
+    data: "nominal_hadiah_permember"
+  }, {
+    data: "kuota_terpenuhi"
+  }, {
+    data: "action",
+    orderable: false,
+    className: "text-center",
+    searchable: false
+  }];
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getDataTabel)("tbl_data_Hadiah", "/get-data-hadiah", columns);
+};
+window.hapusDataHadiah = function (e) {
+  Swal.fire({
+    icon: "info",
+    title: "Apakah Anda Ingin Mneghapus Data Ini ?",
+    showCancelButton: true,
+    confirmButtonText: "Hapus"
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.deteletData)("/data-hadiah/" + e).then(function (res) {
+        (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Dihapus");
+        getDataHadiah();
+      })["catch"](function (err) {
+        var _err$response, _err$response$data, _err$response2, _err$response2$data;
+        (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : _err$response2$data.message));
+      });
+    }
+  });
+};
+window.simpanDataHadiah = function (e) {
+  e.preventDefault();
+  var form_data = $("#form_tambah_hadiah").serializeArray();
+  var databaru = (0,_helper__WEBPACK_IMPORTED_MODULE_0__.serializeObject)(form_data);
+  if ((databaru === null || databaru === void 0 ? void 0 : databaru.is_edit) === "true") {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-hadiah/" + (databaru === null || databaru === void 0 ? void 0 : databaru.kode_jenis), form_data).then(function (res) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
+      $("#ModalHadiah").modal("hide");
+      $("#form_tambah_hadiah")[0].reset();
+      getDataHadiah();
+    })["catch"](function (err) {
+      var _err$response3, _err$response3$data, _err$response4, _err$response4$data;
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : (_err$response3$data = _err$response3.data) === null || _err$response3$data === void 0 ? void 0 : _err$response3$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response4 = err.response) === null || _err$response4 === void 0 ? void 0 : (_err$response4$data = _err$response4.data) === null || _err$response4$data === void 0 ? void 0 : _err$response4$data.message));
+    });
+  } else {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postData)("/data-hadiah", form_data).then(function (res) {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
+      $("#ModalHadiah").modal("hide");
+      $("#form_tambah_hadiah")[0].reset();
+      getDataHadiah();
+    })["catch"](function (err) {
+      var _err$response5, _err$response5$data, _err$response6, _err$response6$data;
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response5 = err.response) === null || _err$response5 === void 0 ? void 0 : (_err$response5$data = _err$response5.data) === null || _err$response5$data === void 0 ? void 0 : _err$response5$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response6 = err.response) === null || _err$response6 === void 0 ? void 0 : (_err$response6$data = _err$response6.data) === null || _err$response6$data === void 0 ? void 0 : _err$response6$data.message));
+    });
+  }
+};
+window.showDetailHadiah = function (e) {
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.getData)("/data-hadiah/" + e).then(function (res) {
+    if (res.data.status == "berhasil") {
+      res.data.data.forEach(function (el) {
+        $("#kode_hadiah").attr('readonly', 'readonly');
+        $("#is_edit").val(true);
+        $("#kode_hadiah").val(el.kode_hadiah);
+        $("#kouta_hadiah").val(el.kouta);
+        $("#nominal_hadiah").val(el.total_nominal_hadiah);
+      });
+      document.getElementById("title_modal_hadiah").innerHTML = "Edit Data Hadiah";
+      $("#ModalHadiah").modal("show");
+    } else {
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("error", res.pesan);
+      return false;
+    }
+  })["catch"](function (err) {
+    var _err$response7, _err$response7$data, _err$response8, _err$response8$data;
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response7 = err.response) === null || _err$response7 === void 0 ? void 0 : (_err$response7$data = _err$response7.data) === null || _err$response7$data === void 0 ? void 0 : _err$response7$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response8 = err.response) === null || _err$response8 === void 0 ? void 0 : (_err$response8$data = _err$response8.data) === null || _err$response8$data === void 0 ? void 0 : _err$response8$data.message));
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/module/admin/DataMember.js":
 /*!*************************************************!*\
   !*** ./resources/js/module/admin/DataMember.js ***!
@@ -6671,6 +6778,7 @@ window.showDetailProduk = function (e) {
 __webpack_require__(/*! ./DataUsers */ "./resources/js/module/admin/DataUsers.js");
 __webpack_require__(/*! ./DataMember */ "./resources/js/module/admin/DataMember.js");
 __webpack_require__(/*! ./Produk */ "./resources/js/module/admin/Produk.js");
+__webpack_require__(/*! ./DataHadiah */ "./resources/js/module/admin/DataHadiah.js");
 
 /***/ }),
 

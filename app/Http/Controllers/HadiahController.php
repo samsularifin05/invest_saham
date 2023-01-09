@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ModelMember;
+use App\Models\ModelHadiah;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Str;
 
-class MemberController extends Controller
+
+class HadiahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.datamember.index');
+        return view('admin.datahadiah.index');
+
     }
 
     /**
@@ -35,44 +36,37 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
-        $cek = ModelMember::where('username', '=', $request->get('username'))->get();
-        if (count($cek) == 1) {
-            return redirect()->route('daftar-member')->with('info', "Username " . $request->get('username') . ' Sudah Terdaftar');
-        } else {
-            $cekData = ModelMember::max('kode_referal');
-            if ($cekData) {
-                $urutan = (int) substr($cekData, 3, 3);
-                $urutan++;
-                $kode_referal = 'RFL' . sprintf("%03s", $urutan);
-            } else {
-                $kode_referal = "RFL001";
-            }
-            $random = Str::random(4);
-            $simpan = ModelMember::create([
-                'username' => $request->get('username'),
-                'no_hp' => $request->get('no_hp'),
-                'nama_lengkap' => $request->get('nama_lengkap'),
-                'no_rekening' => $request->get('no_rekening'),
-                'kode_referal' => $kode_referal . '' . strtoupper($random),
-                'saldo' => 0,
-                'alamat_lengkap' => $request->get('alamat_lengkap'),
-                'password' => bcrypt($request->get('password')),
+        $cek = ModelHadiah::where('kode_hadiah', '=', $request->get('kode_hadiah'))->get();
+        if(count($cek) == 1){
+            $response = array(
+                'status' => 'error',
+                'pesan' =>"Kode Hadiah ".$request->get('kode_hadiah') .' Sudah Terdaftar'
+            );
+            return response()->json($response, 500);
+        }else{
+            $simpan = ModelHadiah::create([
+                'total_nominal_hadiah' => $request->get('nominal_hadiah'),
+                'kouta' => $request->get('kouta_hadiah'),
+                'nominal_hadiah_permember' => (int)$request->get('nominal_hadiah') / (int)$request->get('kouta_hadiah'),
+                'kode_hadiah' => $request->get('kode_hadiah'),
+                'kuota_terpenuhi' => 0,
+
             ]);
-            if ($simpan) {
+            if($simpan){
                 $response = array(
                     'status' => 'berhasil',
                     'data' => $cek
                 );
                 return response()->json($response, 200);
-            } else {
+
+            }else{
                 $response = array(
                     'status' => 'gagal',
                     'data' => $simpan
                 );
-                return response()->json($response, 404);
+            return response()->json($response, 404);
             }
         }
     }
@@ -85,19 +79,20 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $cek = ModelMember::where('id_member', '=', $id)->get();
-        if ($cek) {
+        $cek = ModelHadiah::where('id_tm_hadiah', '=', $id)->get();
+        if($cek){
             $response = array(
                 'status' => 'berhasil',
                 'data' => $cek
             );
             return response()->json($response, 200);
-        } else {
+
+        }else{
             $response = array(
                 'status' => 'gagal',
                 'pesan' => "Gagal Mengambil Data"
             );
-            return response()->json($response, 404);
+        return response()->json($response, 404);
         }
     }
 
@@ -121,26 +116,25 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cek = ModelMember::where('username', $request->get('username'))
-            ->update([
-                'nama_lengkap' => $request->get('nama_lengkap'),
-                'no_hp' => $request->get('no_hp'),
-                'no_rekening' => $request->get('no_rekening'),
-                'alamat_lengkap' => $request->get('alamat_lengkap'),
-            ]);
-        if ($cek) {
-            $response = array(
-                'status' => 'berhasil',
-                'data' => $cek
-            );
-            return response()->json($response, 200);
-        } else {
-            $response = array(
-                'status' => 'gagal',
-                'pesan' => "Gagal Mengambil Data"
-            );
-            return response()->json($response, 404);
-        }
+        $cek = ModelHadiah::where('kode_hadiah', $request->get('kode_hadiah'))
+        ->update([
+            'total_nominal_hadiah' => $request->get('nominal_hadiah'),
+            'kouta' => $request->get('kouta_hadiah'),
+            'nominal_hadiah_permember' => (int)$request->get('nominal_hadiah') / (int)$request->get('kouta_hadiah'),
+        ]);
+    if ($cek) {
+        $response = array(
+            'status' => 'berhasil',
+            'data' => $cek
+        );
+        return response()->json($response, 200);
+    } else {
+        $response = array(
+            'status' => 'gagal',
+            'pesan' => "Gagal Mengambil Data"
+        );
+        return response()->json($response, 404);
+    }
     }
 
     /**
@@ -151,7 +145,7 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        $hasil = ModelMember::where('id_member', $id)->delete();
+        $hasil = ModelHadiah::where('id_tm_hadiah', $id)->delete();
         if ($hasil) {
             $response = array(
                 'status' => 'berhasil',
@@ -170,15 +164,22 @@ class MemberController extends Controller
     public function dataTable(Request $request)
     {
         if ($request->ajax()) {
-            $datas = ModelMember::all();
+            $datas = ModelHadiah::all();
             return DataTables::of($datas)
                 ->addIndexColumn() //memberikan penomoran
+                ->editColumn('total_nominal_hadiah', function ($data) {
+                    return number_format($data->total_nominal_hadiah, 0);
+                })
+                ->editColumn('nominal_hadiah_permember', function ($data) {
+                    return number_format($data->nominal_hadiah_permember, 0);
+                })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailMember(' . $row->id_member . ')"> <i class="fas fa-edit"></i> Edit</a>
-                        <a onclick="hapusDataMember(' . $row->id_member . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
+                    $btn = '<a class="edit btn btn-sm btn-primary" onclick="showDetailHadiah(' . $row->id_tm_hadiah . ')"> <i class="fas fa-edit"></i> Edit</a>
+                        <a onclick="hapusDataHadiah(' . $row->id_tm_hadiah . ')" class="hapus btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])   //merender content column dalam bentuk html
+
                 ->escapeColumns()  //mencegah XSS Attack
                 ->toJson(); //merubah response dalam bentuk Json
         }

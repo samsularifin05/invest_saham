@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
+use App\Http\Controllers\HadiahController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PembelianController;
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['cekloginadmin']], function () {
     Route::resource('/data-produk', ProdukController::class);
     Route::get('/get-data-produk', [ProdukController::class, 'dataTable'])->name('data-produk.getDataAll');
 
+    Route::resource('/data-hadiah', HadiahController::class);
+    Route::get('/get-data-hadiah', [HadiahController::class, 'dataTable'])->name('data-hadiah.getDataAll');
 
 });
 
