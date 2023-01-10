@@ -32,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getData": () => (/* binding */ getData),
 /* harmony export */   "getDataTabel": () => (/* binding */ getDataTabel),
 /* harmony export */   "postData": () => (/* binding */ postData),
+/* harmony export */   "postDataWithImage": () => (/* binding */ postDataWithImage),
 /* harmony export */   "putData": () => (/* binding */ putData),
 /* harmony export */   "serializeObject": () => (/* binding */ serializeObject)
 /* harmony export */ });
@@ -67,6 +68,23 @@ function putData(endpoint, form_data) {
   var data = serializeObject(form_data);
   return new Promise(function (resolve, reject) {
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].put(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
+      resolve(res);
+    })["catch"](function (err) {
+      reject(err);
+    });
+  });
+}
+function postDataWithImage(endpoint, data) {
+  var config = {
+    headers: {
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content"),
+      "Content-Type": "multipart/form-data"
+    }
+  };
+  console.log(data);
+  // let data = serializeObject(form_data);
+  return new Promise(function (resolve, reject) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -129,7 +147,6 @@ function getDataTabel(id_tabel, url, columns) {
     columns: columns
   });
 }
-;
 var Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -155,14 +172,12 @@ function serializeObject(obj) {
   });
   return jsn;
 }
-;
 function ToastNotification(info, message) {
   Toast.fire({
     icon: info,
     title: message
   });
 }
-;
 
 /***/ }),
 

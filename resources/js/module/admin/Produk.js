@@ -1,9 +1,9 @@
-import { deteletData, getData, getDataTabel, postData, putData, serializeObject, ToastNotification } from "../helper";
+import { deteletData, getData, getDataTabel, postData, postDataWithImage, putData, serializeObject, ToastNotification } from "../helper";
 
 window.showModalProduk = function () {
     $("#form_tambah_produk")[0].reset();
     $("#is_edit").val(false);
-    document.getElementById("title_modal_produk").innerHTML = "Tambah Data User";
+    document.getElementById("title_modal_produk").innerHTML = "Tambah Data Produk";
     $("#ModalProduk").modal("show");
 };
 
@@ -68,6 +68,18 @@ window.simpanDataProduk = function (e) {
     e.preventDefault();
     let form_data = $("#form_tambah_produk").serializeArray();
     let databaru = serializeObject(form_data);
+    var file = document.getElementById("image").files[0];
+    // console.log(databaru)
+    let data = new FormData();
+    data.append('image', file, file.name);
+    data.append('harga_produk',databaru.harga_produk);
+    data.append('id_produk',databaru.id_produk);
+    data.append('is_edit',databaru.is_edit);
+    data.append('keuntungan_harian',databaru.keuntungan_harian);
+    data.append('masa_kontrak',databaru.masa_kontrak);
+    data.append('nama_produk',databaru.nama_produk);
+    data.append('total_keuntungan',databaru.total_keuntungan);
+
     if (databaru?.is_edit === "true") {
 
         putData("/data-produk/" + databaru?.id_produk, form_data)
@@ -84,7 +96,7 @@ window.simpanDataProduk = function (e) {
                 );
             });
     } else {
-        postData("/data-produk", form_data)
+        postDataWithImage("/data-produk", data)
             .then((res) => {
                 ToastNotification("success", "Data Berhasil Disimpan");
                 $("#ModalProduk").modal("hide");

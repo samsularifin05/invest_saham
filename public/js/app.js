@@ -6673,7 +6673,7 @@ __webpack_require__.r(__webpack_exports__);
 window.showModalProduk = function () {
   $("#form_tambah_produk")[0].reset();
   $("#is_edit").val(false);
-  document.getElementById("title_modal_produk").innerHTML = "Tambah Data User";
+  document.getElementById("title_modal_produk").innerHTML = "Tambah Data Produk";
   $("#ModalProduk").modal("show");
 };
 window.getDataProduk = function () {
@@ -6721,6 +6721,17 @@ window.simpanDataProduk = function (e) {
   e.preventDefault();
   var form_data = $("#form_tambah_produk").serializeArray();
   var databaru = (0,_helper__WEBPACK_IMPORTED_MODULE_0__.serializeObject)(form_data);
+  var file = document.getElementById("image").files[0];
+  // console.log(databaru)
+  var data = new FormData();
+  data.append('image', file, file.name);
+  data.append('harga_produk', databaru.harga_produk);
+  data.append('id_produk', databaru.id_produk);
+  data.append('is_edit', databaru.is_edit);
+  data.append('keuntungan_harian', databaru.keuntungan_harian);
+  data.append('masa_kontrak', databaru.masa_kontrak);
+  data.append('nama_produk', databaru.nama_produk);
+  data.append('total_keuntungan', databaru.total_keuntungan);
   if ((databaru === null || databaru === void 0 ? void 0 : databaru.is_edit) === "true") {
     (0,_helper__WEBPACK_IMPORTED_MODULE_0__.putData)("/data-produk/" + (databaru === null || databaru === void 0 ? void 0 : databaru.id_produk), form_data).then(function (res) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
@@ -6732,7 +6743,7 @@ window.simpanDataProduk = function (e) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("info", (err === null || err === void 0 ? void 0 : (_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : (_err$response3$data = _err$response3.data) === null || _err$response3$data === void 0 ? void 0 : _err$response3$data.pesan) || (err === null || err === void 0 ? void 0 : (_err$response4 = err.response) === null || _err$response4 === void 0 ? void 0 : (_err$response4$data = _err$response4.data) === null || _err$response4$data === void 0 ? void 0 : _err$response4$data.message));
     });
   } else {
-    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postData)("/data-produk", form_data).then(function (res) {
+    (0,_helper__WEBPACK_IMPORTED_MODULE_0__.postDataWithImage)("/data-produk", data).then(function (res) {
       (0,_helper__WEBPACK_IMPORTED_MODULE_0__.ToastNotification)("success", "Data Berhasil Disimpan");
       $("#ModalProduk").modal("hide");
       $("#form_tambah_produk")[0].reset();
@@ -6813,6 +6824,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getData": () => (/* binding */ getData),
 /* harmony export */   "getDataTabel": () => (/* binding */ getDataTabel),
 /* harmony export */   "postData": () => (/* binding */ postData),
+/* harmony export */   "postDataWithImage": () => (/* binding */ postDataWithImage),
 /* harmony export */   "putData": () => (/* binding */ putData),
 /* harmony export */   "serializeObject": () => (/* binding */ serializeObject)
 /* harmony export */ });
@@ -6848,6 +6860,23 @@ function putData(endpoint, form_data) {
   var data = serializeObject(form_data);
   return new Promise(function (resolve, reject) {
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].put(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
+      resolve(res);
+    })["catch"](function (err) {
+      reject(err);
+    });
+  });
+}
+function postDataWithImage(endpoint, data) {
+  var config = {
+    headers: {
+      "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content"),
+      "Content-Type": "multipart/form-data"
+    }
+  };
+  console.log(data);
+  // let data = serializeObject(form_data);
+  return new Promise(function (resolve, reject) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(_base_url_js__WEBPACK_IMPORTED_MODULE_0__.base_url + endpoint, data, config).then(function (res) {
       resolve(res);
     })["catch"](function (err) {
       reject(err);
@@ -6910,7 +6939,6 @@ function getDataTabel(id_tabel, url, columns) {
     columns: columns
   });
 }
-;
 var Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -6936,14 +6964,12 @@ function serializeObject(obj) {
   });
   return jsn;
 }
-;
 function ToastNotification(info, message) {
   Toast.fire({
     icon: info,
     title: message
   });
 }
-;
 
 /***/ }),
 

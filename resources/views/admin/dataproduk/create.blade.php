@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form_tambah_produk" onsubmit="simpanDataProduk(event)">
+                <form method="POST" id="form_tambah_produk" enctype="multipart/form-data" onsubmit="simpanDataProduk(event)">
                     {{-- @csrf --}}
                     <div class="row">
                         <div class="col-12">
@@ -43,6 +43,12 @@
                             <label> Masa Kontrak  </label>
                             <input class="form-control" id="masa_kontrak" autocomplete="off" type="text" name="masa_kontrak"
                                 placeholder="Masa Kontrak" required>
+                            <br>
+                        </div>
+                        <div class="col-12">
+                            <label> Image  </label>
+                            <input class="form-control" id="image" autocomplete="off" type="file" name="image"
+                                placeholder="Pilih Image" required>
                             <br>
                         </div>
 

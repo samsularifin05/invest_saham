@@ -70,6 +70,7 @@ window.simpanDataMember = function (e) {
     e.preventDefault();
     let form_data = $("#form_tambah_member").serializeArray();
     let databaru = serializeObject(form_data);
+
     if (databaru?.is_edit === "true") {
 
         putData("/data-member/" + databaru?.kode_jenis, form_data)

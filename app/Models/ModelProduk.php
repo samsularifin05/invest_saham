@@ -10,6 +10,6 @@ class ModelProduk extends Model
     use HasFactory;
     protected $table = 'tm_produk';
     protected $fillable = [
-        'nama_produk', 'harga_produk', 'keuntungan_harian', 'total_keuntungan', 'masa_kontrak'
+        'kode_produk','nama_produk', 'harga_produk', 'keuntungan_harian', 'total_keuntungan', 'masa_kontrak', 'image'
     ];
 }

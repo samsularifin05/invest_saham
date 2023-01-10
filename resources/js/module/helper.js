@@ -1,80 +1,97 @@
-import Axios from 'axios';
+import Axios from "axios";
 import { base_url } from "./base_url.js";
 import $ from "jquery";
 
 window.Swal = require("sweetalert2");
 
-export {
-    $
-}
+export { $ };
 export function getData(endpoint) {
     let config = {
-      headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-      },
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     };
     return new Promise((resolve, reject) => {
-      Axios.get(base_url + endpoint, config)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-            reject(err);
-        });
+        Axios.get(base_url + endpoint, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
     });
-  }
-export function putData(endpoint,form_data) {
+}
+export function putData(endpoint, form_data) {
     let config = {
-      headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-      },
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     };
     let data = serializeObject(form_data);
     return new Promise((resolve, reject) => {
-      Axios.put(base_url + endpoint, data, config)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-            reject(err);
-        });
+        Axios.put(base_url + endpoint, data, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
     });
 }
-export function postData(endpoint,form_data) {
+export function postDataWithImage(endpoint, data) {
     let config = {
-      headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-      },
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            "Content-Type": "multipart/form-data",
+        },
+    };
+    console.log(data);
+    // let data = serializeObject(form_data);
+    return new Promise((resolve, reject) => {
+        Axios.post(base_url + endpoint, data, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
+    });
+}
+export function postData(endpoint, form_data) {
+    let config = {
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     };
     let data = serializeObject(form_data);
     return new Promise((resolve, reject) => {
-      Axios.post(base_url + endpoint, data, config)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-            reject(err);
-        });
+        Axios.post(base_url + endpoint, data, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
     });
 }
-  export function deteletData(endpoint) {
+export function deteletData(endpoint) {
     let config = {
-      headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-      },
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     };
     return new Promise((resolve, reject) => {
-      Axios.delete(base_url + endpoint, config)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-            reject(err);
-        });
+        Axios.delete(base_url + endpoint, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
     });
-  }
+}
 
-  export function getDataTabel(id_tabel,url,columns) {
+export function getDataTabel(id_tabel, url, columns) {
     $(`#${id_tabel}`).DataTable({
         pageLength: 10,
         lengthChange: true,
@@ -100,7 +117,7 @@ export function postData(endpoint,form_data) {
         },
         columns,
     });
-};
+}
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -112,7 +129,7 @@ const Toast = Swal.mixin({
         toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
 });
-export function serializeObject (obj) {
+export function serializeObject(obj) {
     var jsn = {};
     $.each(obj, function () {
         if (jsn[this.name]) {
@@ -125,15 +142,11 @@ export function serializeObject (obj) {
         }
     });
     return jsn;
-};
+}
 
-export function ToastNotification(info,message) {
+export function ToastNotification(info, message) {
     Toast.fire({
         icon: info,
         title: message,
     });
-};
-
-
-
-
+}

@@ -25,7 +25,6 @@ class ProdukController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -36,15 +35,29 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        // 'nama_produk', 'harga_produk', 'keuntungan_harian', 'total_keunutngan', 'masa_kontrak'
+        $cekData = ModelProduk::max('kode_produk');
+        if ($cekData) {
+            $urutan = (int) substr($cekData, 3, 3);
+            $urutan++;
+            $kode_produk = 'BRG' . sprintf("%03s", $urutan);
+        } else {
+            $kode_produk = "BRG001";
+        }
         $simpan = ModelProduk::create([
+            'kode_produk' => $kode_produk,
             'nama_produk' => $request->get('nama_produk'),
             'harga_produk' => $request->get('harga_produk'),
             'keuntungan_harian' => $request->get('keuntungan_harian'),
             'total_keuntungan' => $request->get('total_keuntungan'),
             'masa_kontrak' => $request->get('masa_kontrak'),
+            'image' => ''
         ]);
         if ($simpan) {
+            $image_path = $request->file('image')->store('image', 'public');
+            ModelProduk::where('kode_produk', $kode_produk)
+            ->update([
+                'image' => $image_path,
+            ]);
             $response = array(
                 'status' => 'berhasil',
                 'data' => $simpan
@@ -135,19 +148,19 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $hasil = ModelProduk::where('id_produk', $id)->delete();
-        if($hasil){
-             $response = array(
-                 'status' => 'berhasil',
-                 'pesan' =>'Data Berhasil Di hapus'
-             );
-             return response()->json($response, 200);
-         }else{
-             $response = array(
-                 'status' => 'error',
-                 'pesan' =>'Data Gagal Di hapus'
-             );
-             return response()->json($response, 200);
-         }
+        if ($hasil) {
+            $response = array(
+                'status' => 'berhasil',
+                'pesan' => 'Data Berhasil Di hapus'
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'error',
+                'pesan' => 'Data Gagal Di hapus'
+            );
+            return response()->json($response, 200);
+        }
     }
 
     public function dataTable(Request $request)
