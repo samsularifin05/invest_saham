@@ -33,26 +33,30 @@
             </div>
             <div class="row">
                 @foreach ($dataproduk as $item)
-                <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-auto d-flex justify-content-center align-self-center">
-                                    <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
-                                        <img src="{{ url('storage/images/'.$item->image.'')  }}" alt="">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="#" class="card mb-3" onclick="showModalQty('{{ $item }}')" href="javascript:;"
+                            data-bs-target="#modalAddQty">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-auto d-flex justify-content-center align-self-center">
+                                        <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
+                                            <img src="{{ url('storage/images/' . $item->image . '') }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col align-self-center ps-0">
+                                        <p class="text-color-theme mb-1">{{ $item->nama_produk }}</p>
+                                        <p class="text-muted size-12">Penghasilan : {{ $item->masa_kontrak }} Hari</br>
+                                            Harga Investasi : {{ number_format($item->harga_produk) }} </br> Jumlah
+                                            Pemasukan : {{ number_format($item->total_keuntungan) }}</p>
                                     </div>
                                 </div>
-                                <div class="col align-self-center ps-0">
-                                    <p class="text-color-theme mb-1">{{ $item->nama_produk }}</p>
-                                    <p class="text-muted size-12">Penghasilan : {{ $item->masa_kontrak }} Hari</br> Harga Investasi : {{ number_format($item->harga_produk) }} </br> Jumlah Pemasukan : {{ number_format($item->total_keuntungan) }}</p>
-                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 @endforeach
             </div>
         </div>
+        @include('member/home/modal')
 
     </main>
 @stop

@@ -65,7 +65,7 @@ $(window).on('load', function () {
             var toastElinit = new bootstrap.Toast(toastElList, {
                 //autohide: !1,
             });
-            toastElinit.show();
+            // toastElinit.show();
 
             /* PWA add to phone Install ap button */
             var btnAdd = document.getElementById('addtohome')
@@ -215,7 +215,7 @@ $(window).on('load', function () {
                 autohide: true,
                 delay: 5000,
             });
-            toastElinit.show();
+            // toastElinit.show();
 
             /* PWA add to phone Install ap button */
             var btnAdd = document.getElementById('addtohome');

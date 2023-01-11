@@ -3927,20 +3927,10 @@ $(window).on('resize', function () {
 
 /***/ }),
 
-/***/ "./resources/mobile/js/pages/index.js":
-/*!********************************************!*\
-  !*** ./resources/mobile/js/pages/index.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-__webpack_require__(/*! ./login.js */ "./resources/mobile/js/pages/login.js");
-
-/***/ }),
-
-/***/ "./resources/mobile/js/pages/login.js":
-/*!********************************************!*\
-  !*** ./resources/mobile/js/pages/login.js ***!
-  \********************************************/
+/***/ "./resources/mobile/js/pages/home.js":
+/*!*******************************************!*\
+  !*** ./resources/mobile/js/pages/home.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3951,37 +3941,38 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-window.loginMember = /*#__PURE__*/function () {
+window.showModalQty = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var form_data, data;
+    var data;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          e.preventDefault();
-          form_data = (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#form_login_member").serializeArray(); // let databaru = serializeObject(form_data);
-          console.log(form_data);
-          _context.prev = 3;
-          _context.next = 6;
-          return (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.postData)('/cek-login-member', form_data);
+          data = JSON.parse(e);
+          (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#modalAddQty").modal("show");
+          (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#title_modal_qty").html(data.nama_produk);
+          (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#harga_investasi").html(Number(data.harga_produk).toLocaleString("kr-ko"));
+          (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#masa_kontrak").html(Number(data.masa_kontrak));
+          (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_0__.$)("#total_keuntungan").html(Number(data.total_keuntungan).toLocaleString("kr-ko"));
         case 6:
-          data = _context.sent;
-          console.log(data);
-          _context.next = 13;
-          break;
-        case 10:
-          _context.prev = 10;
-          _context.t0 = _context["catch"](3);
-          console.log(_context.t0);
-        case 13:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[3, 10]]);
+    }, _callee);
   }));
   return function (_x) {
     return _ref.apply(this, arguments);
   };
 }();
+
+/***/ }),
+
+/***/ "./resources/mobile/js/pages/index.js":
+/*!********************************************!*\
+  !*** ./resources/mobile/js/pages/index.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+__webpack_require__(/*! ./home.js */ "./resources/mobile/js/pages/home.js");
 
 /***/ }),
 
@@ -38097,7 +38088,7 @@ $(window).on('load', function () {
       var toastElinit = new bootstrap.Toast(toastElList, {
         //autohide: !1,
       });
-      toastElinit.show();
+      // toastElinit.show();
 
       /* PWA add to phone Install ap button */
       var btnAdd = document.getElementById('addtohome');
@@ -38236,7 +38227,7 @@ $(window).on('load', function () {
         autohide: true,
         delay: 5000
       });
-      toastElinit.show();
+      // toastElinit.show();
 
       /* PWA add to phone Install ap button */
       var btnAdd = document.getElementById('addtohome');

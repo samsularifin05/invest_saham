@@ -1,1 +1,1 @@
-require('./login.js')
+require('./home.js')

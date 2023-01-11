@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-12 col-md-6 d-flex justify-content-center align-self-center">
+                    <div class="col-12 col-md-12 mb-4 d-flex justify-content-center align-self-center">
                         <p> Kode Referal &nbsp; <?= Session::get('datauser')->kode_referal ?> </p>
                     </div>
                     <div class="col-6 col-md-6">

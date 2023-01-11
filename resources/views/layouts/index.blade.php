@@ -49,11 +49,7 @@ $datauser = Session::get('datauser');
                                 </p>
                             </a>
                         </li>
-                        @if (Session::get('datauser')->level === 'admin')
                         @include('layouts/menu-admin')
-                        @else
-                        @include('layouts/menu-member')
-                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
