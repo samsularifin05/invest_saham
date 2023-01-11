@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
 use App\Http\Controllers\HadiahController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PembelianController;
@@ -67,6 +68,8 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
 Route::group(['middleware' => ['cekloginmember']], function () {
     Route::get('/dashboard-member', [DashboardController::class, 'DashboardMember'])->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/home', [HomeController::class, 'index'])->name('Home.member');
 
     //Pembelian
     Route::resource('/pembelian', PembelianController::class);

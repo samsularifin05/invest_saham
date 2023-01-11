@@ -193,7 +193,7 @@
         <div class="container">
             <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">
+                    <a class="nav-link active" href="{{ url('/home') }}">
                         <span>
                             <i class="nav-icon bi bi-house"></i>
                             <span class="nav-text">Home</span>
@@ -204,11 +204,11 @@
                     <a class="nav-link" href="stats.html">
                         <span>
                             <i class="nav-icon bi bi-laptop"></i>
-                            <span class="nav-text">Statistics</span>
+                            <span class="nav-text">Pendapatan</span>
                         </span>
                     </a>
                 </li>
-                <li class="nav-item centerbutton">
+                {{-- <li class="nav-item centerbutton">
                     <div class="nav-link">
                         <span class="theme-radial-gradient">
                             <i class="close bi bi-x"></i>
@@ -236,7 +236,7 @@
                             </button>
                         </div>
                     </div>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="rewards.html">
                         <span>
@@ -246,10 +246,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="wallet.html">
+                    <a class="nav-link" href="{{ url('dashboard-member') }}">
                         <span>
-                            <i class="nav-icon bi bi-wallet2"></i>
-                            <span class="nav-text">Wallet</span>
+                            <i class="nav-icon bi bi-person-circle"></i>
+                            <span class="nav-text">Profile</span>
                         </span>
                     </a>
                 </li>

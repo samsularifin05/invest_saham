@@ -23,25 +23,25 @@
                         </div>
                         <div class="col-12">
                             <label> Harga Produk  </label>
-                            <input class="form-control" id="harga_produk" autocomplete="off" type="text" name="harga_produk"
+                            <input class="form-control" id="harga_produk" autocomplete="off" type="number" name="harga_produk"
                                 placeholder="Harga Produk" required>
                             <br>
                         </div>
                         <div class="col-12">
                             <label> Keunutngan Harian  </label>
-                            <input class="form-control" id="keuntungan_harian" autocomplete="off" type="text" name="keuntungan_harian"
+                            <input class="form-control" id="keuntungan_harian" autocomplete="off" type="number" name="keuntungan_harian"
                                 placeholder="Keuntungan Harian" required>
                             <br>
                         </div>
                         <div class="col-12">
                             <label> Total Keuntungan  </label>
-                            <input class="form-control" id="total_keuntungan" autocomplete="off" type="text" name="total_keuntungan"
+                            <input class="form-control" id="total_keuntungan" autocomplete="off" type="number" name="total_keuntungan"
                                 placeholder="Total Keuntungan" required>
                             <br>
                         </div>
                         <div class="col-12">
                             <label> Masa Kontrak  </label>
-                            <input class="form-control" id="masa_kontrak" autocomplete="off" type="text" name="masa_kontrak"
+                            <input class="form-control" id="masa_kontrak" autocomplete="off" type="number" name="masa_kontrak"
                                 placeholder="Masa Kontrak" required>
                             <br>
                         </div>
