@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ModelProduk;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-
+use Storage;
+use File;
 class ProdukController extends Controller
 {
     /**
@@ -53,11 +54,11 @@ class ProdukController extends Controller
             'image' => ''
         ]);
         if ($simpan) {
-            $image_path = $request->file('image')->store('image', 'public');
+            $image_path = $request->file('image')->store('images', 'public');
             ModelProduk::where('kode_produk', $kode_produk)
-            ->update([
-                'image' => $image_path,
-            ]);
+                ->update([
+                    'image' => basename($image_path)
+                ]);
             $response = array(
                 'status' => 'berhasil',
                 'data' => $simpan
@@ -147,12 +148,19 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
+        $images = ModelProduk::where('id_produk', $id)->first();
+
+        if(File::exists("storage/images/".$images->image)){
+            unlink("storage/images/".$images->image);
+        }
+
         $hasil = ModelProduk::where('id_produk', $id)->delete();
         if ($hasil) {
             $response = array(
                 'status' => 'berhasil',
                 'pesan' => 'Data Berhasil Di hapus'
             );
+
             return response()->json($response, 200);
         } else {
             $response = array(
