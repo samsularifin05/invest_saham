@@ -1,9 +1,9 @@
 @extends('layouts.member')
-@section('title', 'Data Produk')
+@section('title', 'Data Bank')
 @section('content')
     <main class="h-100">
 
-        <!-- Header -->
+
         <header class="header position-fixed">
             <div class="row">
                 <div class="col-auto">
@@ -13,7 +13,6 @@
                 </div>
                 <div class="col align-self-center text-center">
                     <div class="logo-small">
-                        {{-- <img src="assets/img/logo.png" alt=""> --}}
                         <h5>Investasi Saham</h5>
                     </div>
                 </div>
@@ -25,99 +24,125 @@
                 </div>
             </div>
         </header>
-        <!-- Header ends -->
-
-        <!-- main page content -->
         <div class="main-container container">
-            <!-- wallet balance -->
 
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-auto">
-                            <figure class="avatar avatar-44 rounded-10">
-                                <img src="{{ asset('images/user1.jpg') }}" alt="">
-                            </figure>
-                        </div>
-                        <div class="col px-0 align-self-center">
-                            <p class="mb-0 text-color-theme"><?= Session::get('datauser')->nama_lengkap ?></p>
-                            <p class="text-muted size-12"><?= Session::get('datauser')->no_hp ?></p>
-                        </div>
-                        <div class="col-auto">
-                            <a href="addmoney.html" class="btn btn-44 btn-light shadow-sm">
-                                <i class="bi bi-plus-circle"></i>
-                            </a>
-                            <a href="withdraw.html" class="btn btn-44 btn-default shadow-sm ms-1">
-                                <i class="bi bi-arrow-down-circle"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-12 mb-4 d-flex justify-content-center align-self-center">
-                        <p> Kode Referal &nbsp; <?= Session::get('datauser')->kode_referal ?> </p>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="card theme-bg text-white border-0 text-center">
-                            <div class="card-body">
-                                <p >100.00</p>
-                                <p >Saldo Diposit</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <a href="{{ url('data-bank') }}" class="card theme-bg text-white border-0 text-center">
-                            <div class="card-body">
-                                <p >100.00</p>
-                                <p >Saldo Penarikan</p>
-                            </div>
-                        </a>
-                    </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <h6 class="title">Produk Stabil</h6>
                 </div>
             </div>
-
-            <!-- summary -->
-            <div class="row mb-3">
-
-                <div class="col-6 col-md-6">
-                    <div class="card shadow-sm mb-2">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-auto px-0">
-                                    <div class="avatar avatar-40 bg-warning text-white shadow-sm rounded-10-end">
-                                        <i class="bi bi-star"></i>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <p class="text-muted size-12 mb-0 mt-3">Menyetorkan</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-6">
-                    <div class="card shadow-sm mb-2">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-auto px-0">
-                                    <div class="avatar avatar-40 bg-success text-white shadow-sm rounded-10-end">
-                                        <i class="bi bi-cash-stack"></i>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <p class="text-muted size-12 mb-0 mt-3">Menarik</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <!-- tabs structuTransactionsre -->
+            <ul class="nav nav-pills nav-justified tabs mb-3" id="assetstabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#cards"
+                        type="button" role="tab" aria-controls="cards" aria-selected="true">Cards</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="currency-tab" data-bs-toggle="tab" data-bs-target="#currency"
+                        type="button" role="tab" aria-controls="currency" aria-selected="false">Currency</button>
+                </li>
+            </ul>
             <div class="tab-content" id="assetstabsContent">
-                <div class="tab-pane fade show active" id="cards" role="tabpanel">
+                <div class="tab-pane fade show active" id="cards" role="tabpanel" >
                     <!-- swiper credit cards -->
-                    <!-- Transactions -->
+                    <div class="row mb-3">
+                        <div class="col-12 px-0">
+                            <div class="swiper-container cardswiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="card dark-bg">
+                                            <div class="card-body">
+                                                <div class="row mb-3">
+                                                    <div class="col-auto align-self-center">
+                                                        <img src="assets/img/masterocard.png" alt="">
+                                                    </div>
+                                                    <div class="col align-self-center text-end">
+                                                        <p class="small">
+                                                            <span class="text-uppercase size-10">Validity</span><br>
+                                                            <span class="text-muted">06/25</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h4 class="fw-normal mb-2">
+                                                            56040.00
+                                                            <span class="small text-muted">USD</span>
+                                                        </h4>
+                                                        <p class="mb-0 text-muted size-12">10141 0021 0001 0154</p>
+                                                        <p class="text-muted size-12">Debit Card</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="card theme-radial-gradient border-0">
+                                            <div class="card-body">
+                                                <div class="row mb-3">
+                                                    <div class="col-auto align-self-center">
+                                                        <i class="bi bi-wallet2"></i> Wallet
+                                                    </div>
+                                                    <div class="col align-self-center text-end">
+                                                        <p class="small">
+                                                            <span class="text-uppercase size-10">Validity</span><br>
+                                                            <span class="text-muted">Unlimited</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h4 class="fw-normal mb-2">
+                                                            100.00
+                                                            <span class="small text-muted">USD</span>
+                                                        </h4>
+                                                        <p class="mb-0 text-muted size-12">10141 0021 0001 0154</p>
+                                                        <p class="text-muted size-12">Debit Card</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row mb-3">
+                                                    <div class="col-auto align-self-center">
+                                                        <img src="assets/img/masterocard.png" alt="">
+                                                    </div>
+                                                    <div class="col align-self-center text-end">
+                                                        <p class="small">
+                                                            <span class="text-uppercase size-10">Validity</span><br>
+                                                            <span class="text-muted">09/24</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h4 class="fw-normal mb-2">
+                                                            150540.00
+                                                            <span class="small text-muted">USD</span>
+                                                        </h4>
+                                                        <p class="mb-0 text-muted size-12">10141 0021 0001 0154</p>
+                                                        <p class="text-muted size-12">Debit Card</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Transactions -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h6 class="title">Transactions</h6>
+                        </div>
+                        <div class="col-auto">
+                            <a href="" class="small">Add Card</a>
+                        </div>
+                    </div>
                     <div class="row mb-4">
                         <div class="col-12 px-0">
                             <ul class="list-group list-group-flush bg-none">
@@ -125,11 +150,16 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10 ">
-                                                <i class="fs-2 bi bi-person-circle"></i>
+                                                <img src="assets/img/company4.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Informasi Saya</p>
+                                            <p class="text-color-theme mb-0">Zomato</p>
+                                            <p class="text-muted size-12">Food</p>
+                                        </div>
+                                        <div class="col align-self-center text-end">
+                                            <p class="mb-0">-25.00</p>
+                                            <p class="text-muted size-12">Debit Card 4545</p>
                                         </div>
                                     </div>
                                 </li>
@@ -138,13 +168,17 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-credit-card"></i>
+                                                <img src="assets/img/company5.png" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Kartu Bank Saya</p>
+                                            <p class="text-color-theme mb-0">Uber</p>
+                                            <p class="text-muted size-12">Travel</p>
                                         </div>
-
+                                        <div class="col align-self-center text-end">
+                                            <p class="mb-0">-26.00</p>
+                                            <p class="text-muted size-12">Debit Card 4545</p>
+                                        </div>
                                     </div>
                                 </li>
 
@@ -152,13 +186,17 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-unlock"></i>
+                                                <img src="assets/img/company1.png" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Ubah Kata Sandi Masuk</p>
+                                            <p class="text-color-theme mb-0">Starbucks</p>
+                                            <p class="text-muted size-12">Food</p>
                                         </div>
-
+                                        <div class="col align-self-center text-end">
+                                            <p class="mb-0">-18.00</p>
+                                            <p class="text-muted size-12">Cash</p>
+                                        </div>
                                     </div>
                                 </li>
 
@@ -166,66 +204,17 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-unlock"></i>
+                                                <img src="assets/img/company3.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Ubah Kata Sandi Perdagangan</p>
+                                            <p class="text-color-theme mb-0">Walmart</p>
+                                            <p class="text-muted size-12">Clothing</p>
                                         </div>
-
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-clock-history"></i>
-                                            </div>
+                                        <div class="col align-self-center text-end">
+                                            <p class="mb-0">-105.00</p>
+                                            <p class="text-muted size-12">Wallet</p>
                                         </div>
-                                        <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Catatan Saldo</p>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-clipboard-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Catatan Setoran</p>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-calendar4-event"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Tarik Catatan</p>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-cash-coin"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">Catatan Penghasilan</p>
-                                        </div>
-
                                     </div>
                                 </li>
                             </ul>
@@ -298,7 +287,7 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10">
-                                                <img src="{{ asset('images/company6.png') }}" alt="">
+                                                <img src="assets/img/company6.png" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
@@ -316,7 +305,7 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="avatar avatar-50 shadow rounded-10">
-                                                <img src="{{ asset('images/company7.jpg') }}" alt="">
+                                                <img src="assets/img/company7.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
@@ -334,11 +323,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- main page content ends -->
-
 
     </main>
-
 @stop

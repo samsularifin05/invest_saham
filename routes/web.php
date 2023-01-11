@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataUserControllers;
 use App\Http\Controllers\HadiahController;
@@ -74,6 +75,8 @@ Route::group(['middleware' => ['cekloginmember']], function () {
     //Pembelian
     Route::resource('/pembelian', PembelianController::class);
     Route::get('/get-pembelian', [PembelianController::class, 'dataTable'])->name('pembelian.getDataAll');
+
+    Route::resource('/data-bank', BankController::class);
 });
 
 Route::group(['middleware' => ['ceksessionmember']], function () {
