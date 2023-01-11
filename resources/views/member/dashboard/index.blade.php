@@ -54,6 +54,9 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-self-center">
+                        <p> Kode Referal &nbsp; <?= Session::get('datauser')->kode_referal ?> </p>
+                    </div>
                     <div class="col-6 col-md-6">
                         <div class="card theme-bg text-white border-0 text-center">
                             <div class="card-body">
@@ -75,6 +78,7 @@
 
             <!-- summary -->
             <div class="row mb-3">
+
                 <div class="col-6 col-md-6">
                     <div class="card shadow-sm mb-2">
                         <div class="card-body">
@@ -171,19 +175,7 @@
 
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-50 shadow rounded-10">
-                                                <i class="fs-2 bi bi-gem"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col align-self-center ps-0">
-                                            <p class="text-color-theme mb-0">VIP</p>
-                                        </div>
 
-                                    </div>
-                                </li>
                                 <li class="list-group-item">
                                     <div class="row">
                                         <div class="col-auto">

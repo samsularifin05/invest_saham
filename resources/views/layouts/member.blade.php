@@ -43,7 +43,7 @@
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </div>
-                <p class="mt-4">It's time for track budget<br><strong>Please wait...</strong></p>
+                <p class="mt-4"><strong>Please wait...</strong></p>
             </div>
         </div>
     </div>
@@ -101,9 +101,9 @@
                 <div class="col-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="{{ url('dashboard-member') }}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
-                                <div class="col">Dashboard</div>
+                                <div class="col">Profile</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
@@ -133,7 +133,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="chat.html" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Messages</div>
+                                <div class="col">Chat Agen</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
@@ -146,31 +146,9 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-newspaper"></i></div>
-                                <div class="col">Blogs</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="style.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-palette"></i></div>
-                                <div class="col">Style <i class="bi bi-star-fill text-warning small"></i></div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-file-earmark-text"></i></div>
-                                <div class="col">Pages <span class="badge bg-info fw-light">new</span></div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="signin.html" tabindex="-1">
+                            <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
                                 <div class="col">Logout</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
@@ -201,7 +179,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.html">
+                    <a class="nav-link" href="#">
                         <span>
                             <i class="nav-icon bi bi-laptop"></i>
                             <span class="nav-text">Pendapatan</span>
@@ -238,7 +216,7 @@
                     </div>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="rewards.html">
+                    <a class="nav-link" href="#">
                         <span>
                             <i class="nav-icon bi bi-gift"></i>
                             <span class="nav-text">Rewards</span>

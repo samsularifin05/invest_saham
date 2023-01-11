@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ModelMember;
 use App\Models\ModelUsers;
 use Illuminate\Http\Request;
-// use Validator;
+use Illuminate\Support\Str;
+
 
 class AuthController extends Controller
 {
@@ -58,6 +59,15 @@ class AuthController extends Controller
         if (count($cek) == 1) {
             return redirect()->route('daftar-member')->with('info', "Username " . $request->get('username') . ' Sudah Terdaftar');
         } else {
+            $cekData = ModelMember::max('kode_referal');
+            if ($cekData) {
+                $urutan = (int) substr($cekData, 3, 3);
+                $urutan++;
+                $kode_referal = 'RFL' . sprintf("%03s", $urutan);
+            } else {
+                $kode_referal = "RFL001";
+            }
+            $random = Str::random(4);
             $simpan = ModelMember::create([
                 'username' => $request->get('username'),
                 'no_hp' => $request->get('no_hp'),
@@ -65,7 +75,7 @@ class AuthController extends Controller
                 'no_rekening' => '-',
                 'alamat_lengkap' => '-',
                 'saldo' => 0,
-                'kode_referal' => $request->get('kode_referal') ? $request->get('kode_referal') :'-' ,
+                'kode_referal' => $request->get('kode_referal') ? $request->get('kode_referal') : $kode_referal . '' . strtoupper($random) ,
                 'password' => bcrypt($request->get('password')),
             ]);
             if ($simpan) {
