@@ -142,7 +142,9 @@
                                             </div>
                                         </div>
                                         <div class="col align-self-center ps-0">
+                                            <a href="{{ url('data-bank') }}">
                                             <p class="text-color-theme mb-0">Kartu Bank Saya</p>
+                                            </a>
                                         </div>
 
                                     </div>

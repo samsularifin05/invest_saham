@@ -22,4 +22,5 @@ php artisan make:controller ProdukController -r
 #create model
 php artisan make:model ModelProduk
 
-
+#migrate spesific
+php artisan migrate --path=/database/migrations/

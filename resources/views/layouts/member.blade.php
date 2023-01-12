@@ -211,6 +211,7 @@
             </ul>
         </div>
     </footer>
+
     <!-- Footer ends-->
 </body>
 
