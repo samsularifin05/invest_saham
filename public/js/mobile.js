@@ -3947,15 +3947,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 window.getDataBank = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var result;
+  var cekPasswordPenarikan, result;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
-        console.log("masuk");
-        _context.prev = 1;
-        _context.next = 4;
+        _context.prev = 0;
+        _context.next = 3;
+        return (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_2__.getData)("/ceking-password-penarikan");
+      case 3:
+        cekPasswordPenarikan = _context.sent;
+        // console.log(cekPasswordPenarikan.data.password_pernarikan)
+        // for
+        if (cekPasswordPenarikan.data.password_pernarikan === "-") {
+          window.location.href = _js_module_base_url__WEBPACK_IMPORTED_MODULE_1__.base_url + '/ganti-password-penarikan';
+        }
+        _context.next = 7;
         return (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_2__.getData)("/data-bank/1");
-      case 4:
+      case 7:
         result = _context.sent;
         // console.log(result.data)
         if (result.data.data.length === 0) {
@@ -3967,17 +3975,17 @@ window.getDataBank = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRu
             (0,_js_module_helper__WEBPACK_IMPORTED_MODULE_2__.$)("#content-data-bank").append("\n                <div class=\"col-lg-4 mb-3 d-flex flex-column\">\n                <div class=\"card dark-bg\">\n                    <div class=\"card-body\">\n                        <div class=\"row mb-3\">\n                            <div class=\"col-auto align-self-center\">\n                                <img src=\"".concat(_js_module_base_url__WEBPACK_IMPORTED_MODULE_1__.base_url, "'/images/masterocard.png'\" alt=\"\">\n                            </div>\n                            <div class=\"col align-self-center text-end\">\n                                <p class=\"small\">\n                                    <span class=\"text-muted\" onclick=\"deleteData(").concat(el.id, ")\">\n                                        <i class=\"bi bi-trash\"></i>\n                                    </span>\n                                </p>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-12\">\n                                <h4 class=\"fw-normal mb-2\">\n                                    &nbsp;\n                                    <span class=\"small text-muted\"></span>\n                                </h4>\n                                <p class=\"mb-0 text-muted size-12\">").concat(el.no_rekening, "</p>\n                                <p class=\"text-muted size-12\">").concat(el.atas_nama, "</p>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n                "));
           });
         }
-        _context.next = 11;
+        _context.next = 14;
         break;
-      case 8:
-        _context.prev = 8;
-        _context.t0 = _context["catch"](1);
-        console.log(_context.t0);
       case 11:
+        _context.prev = 11;
+        _context.t0 = _context["catch"](0);
+        console.log(_context.t0);
+      case 14:
       case "end":
         return _context.stop();
     }
-  }, _callee, null, [[1, 8]]);
+  }, _callee, null, [[0, 11]]);
 }));
 window.simpanDataBank = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {

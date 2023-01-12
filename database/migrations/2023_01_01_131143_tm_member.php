@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('alamat_lengkap');
             $table->string('saldo');
             $table->string('password');
+            $table->string('password_pernarikan');
             $table->string('kode_referal');
             $table->timestamps();
         });

@@ -10,8 +10,14 @@ import {
 } from "../../../js/module/helper";
 
 window.getDataBank = async function () {
-    console.log("masuk");
+    // console.log("masuk");
     try {
+        let cekPasswordPenarikan = await getData("/ceking-password-penarikan");
+        // console.log(cekPasswordPenarikan.data.password_pernarikan)
+        // for
+        if(cekPasswordPenarikan.data.password_pernarikan === "-"){
+            window.location.href = base_url +'/ganti-password-penarikan'
+        }
         let result = await getData("/data-bank/1");
         // console.log(result.data)
         if (result.data.data.length === 0) {

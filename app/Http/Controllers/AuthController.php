@@ -56,7 +56,7 @@ class AuthController extends Controller
     public function savemember(Request $request)
     {
         $cek = ModelMember::where('username', '=', $request->get('username'))->get();
-        if (count($cek) == 1) {
+        if (count($cek) === 1) {
             return redirect()->route('daftar-member')->with('info', "Username " . $request->get('username') . ' Sudah Terdaftar');
         } else {
             $cekData = ModelMember::max('kode_referal');
@@ -77,6 +77,7 @@ class AuthController extends Controller
                 'saldo' => 0,
                 'kode_referal' => $request->get('kode_referal') ? $request->get('kode_referal') : $kode_referal . '' . strtoupper($random) ,
                 'password' => bcrypt($request->get('password')),
+                'password_pernarikan' => '-',
             ]);
             if ($simpan) {
                 return redirect()->route('login-member')->with('success', 'Daftar Berhasil, Silahkan Login');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,15 @@ class MemberController extends Controller
     public function index()
     {
         return view('admin.datamember.index');
+    }
+    public function gantiPasswordPenarikan()
+    {
+        return view('member.gantiPasswordPenarikan.index');
+    }
+    public function cekPasswordPenarikan()
+    {
+        $cek = ModelMember::where('id_member', '=', Session::get('datauser')->id_member)->first();
+        return response()->json($cek, 200);
     }
 
     /**
