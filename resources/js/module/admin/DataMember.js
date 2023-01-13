@@ -96,6 +96,7 @@ window.simpanDataMember = function (e) {
                 ToastNotification("success", "Data Berhasil Disimpan");
                 $("#ModalDataMember").modal("hide");
                 $("#form_tambah_member")[0].reset();
+             
                 getDataMember();
             })
             .catch((err) => {

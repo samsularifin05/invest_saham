@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,40 @@ class MemberController extends Controller
     {
         return view('admin.datamember.index');
     }
+    public function gantiPasswordPenarikan()
+    {
+        return view('member.gantiPasswordPenarikan.index');
+    }
+    public function cekPasswordPenarikan()
+    {
+        $cek = ModelMember::where('id_member', '=', Session::get('datauser')->id_member)->first();
+        return response()->json($cek, 200);
+    }
 
+    public function simpanpasswordpenarikan(Request $request)
+    {
+        return $request->get('pin');
+        $cek = ModelMember::where('id_member',Session::get('datauser')->id_member)
+        ->update([
+            'password_pernarikan' => $request->get('pin'),
+        ]);
+
+        if ($cek) {
+            $response = array(
+                'status' => 'berhasil',
+                'pesan' => "Pin Berhasil Disimpan",
+                'data' => []
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'pesan'=> "Gagal Menyimpan Pin Baru",
+                'data' => []
+            );
+            return response()->json($response, 404);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

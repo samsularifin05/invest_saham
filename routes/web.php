@@ -69,6 +69,9 @@ Route::group(['middleware' => ['ceksessionadmin']], function () {
 Route::group(['middleware' => ['cekloginmember']], function () {
     Route::get('/dashboard-member', [DashboardController::class, 'DashboardMember'])->name('dashboard-member');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/ganti-password-penarikan', [MemberController::class, 'gantiPasswordPenarikan'])->name('gantiPasswordPernarikan');
+    Route::post('/simpan-password-penarikan', [MemberController::class, 'simpanpasswordpenarikan'])->name('simpanpasswordpenarikan');
+    Route::get('/ceking-password-penarikan', [MemberController::class, 'cekPasswordPenarikan'])->name('cekPasswordPenarikan');
 
     Route::get('/home', [HomeController::class, 'index'])->name('Home.member');
 

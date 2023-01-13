@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tm_member', function (Blueprint $table) {
-            $table->id('id_member');
-            $table->string('username');
-            $table->string('nama_lengkap');
-            $table->string('no_hp');
+        Schema::create('tm_bank', function (Blueprint $table) {
+            $table->id();
+            $table->string('id_member');
+            $table->string('nama_bank');
             $table->string('no_rekening');
-            $table->string('alamat_lengkap');
-            $table->string('saldo');
-            $table->string('password');
-            $table->string('password_pernarikan');
-            $table->string('kode_referal');
+            $table->string('atas_nama');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tm_member');
+        Schema::dropIfExists('tm_bank');
     }
 };
