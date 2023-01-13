@@ -1,4 +1,3 @@
-import { forEach } from "lodash";
 import { base_url } from "../../../js/module/base_url";
 import {
     $,
