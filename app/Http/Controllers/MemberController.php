@@ -29,6 +29,30 @@ class MemberController extends Controller
         return response()->json($cek, 200);
     }
 
+    public function simpanpasswordpenarikan(Request $request)
+    {
+        return $request->get('pin');
+        $cek = ModelMember::where('id_member',Session::get('datauser')->id_member)
+        ->update([
+            'password_pernarikan' => $request->get('pin'),
+        ]);
+
+        if ($cek) {
+            $response = array(
+                'status' => 'berhasil',
+                'pesan' => "Pin Berhasil Disimpan",
+                'data' => []
+            );
+            return response()->json($response, 200);
+        } else {
+            $response = array(
+                'status' => 'gagal',
+                'pesan'=> "Gagal Menyimpan Pin Baru",
+                'data' => []
+            );
+            return response()->json($response, 404);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

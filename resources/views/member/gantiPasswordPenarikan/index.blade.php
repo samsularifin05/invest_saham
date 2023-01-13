@@ -13,7 +13,7 @@
                 </div>
                 <div class="col align-self-center text-center">
                     <div class="logo-small">
-                        <h5>Buat Password Penarikan</h5>
+                        <h5>Setting Password Penarikan</h5>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -24,6 +24,23 @@
                 </div>
             </div>
         </header>
+
+        <div class="container">
+            <form method="POST" id="form_setting_password_penarikan" onsubmit="simpanPasswordPenarikan(event)">
+               <div class="row">
+                <div class="col-12">
+                    <label> PIN Penarikan  </label>
+                    <input class="form-control" id="pin" autocomplete="off" type="password" name="pin"
+                        placeholder="Masukan Pin" required>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-block"> Simpan </button>
+                    </div>
+                </div>
+               </div>
+            </form>
+        </div>
 
     </main>
 @stop

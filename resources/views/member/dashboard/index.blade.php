@@ -339,7 +339,11 @@
 
         </div>
         <!-- main page content ends -->
-
+        <script>
+            $(document).ready(function() {
+                cekPin()
+            })
+        </script>
 
     </main>
 
