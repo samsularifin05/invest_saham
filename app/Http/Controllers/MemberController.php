@@ -31,10 +31,9 @@ class MemberController extends Controller
 
     public function simpanpasswordpenarikan(Request $request)
     {
-        return $request->get('pin');
         $cek = ModelMember::where('id_member',Session::get('datauser')->id_member)
         ->update([
-            'password_pernarikan' => $request->get('pin'),
+            'password_pernarikan' => bcrypt($request->get('pin')),
         ]);
 
         if ($cek) {

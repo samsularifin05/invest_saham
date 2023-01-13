@@ -32,6 +32,15 @@
                 </div>
             </div>
             <div class="row">
+                @if (count($dataproduk) === 0)
+                <div class="col-lg-12 mb-3 d-flex flex-column">
+                    <div class="card dark-bg">
+                        <div class="card-body text-center">
+                            Data Produk Tidak Ada
+                        </div>
+                    </div>
+                </div>
+                @endif
                 @foreach ($dataproduk as $item)
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="#" class="card mb-3" onclick="showModalQty('{{ $item }}')" href="javascript:;"

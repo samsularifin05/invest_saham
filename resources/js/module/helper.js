@@ -57,7 +57,7 @@ export function postDataWithImage(endpoint, data) {
             });
     });
 }
-export function postData(endpoint, form_data) {
+export function postData(endpoint, form_data, formObject) {
     let config = {
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

@@ -6883,7 +6883,7 @@ function postDataWithImage(endpoint, data) {
     });
   });
 }
-function postData(endpoint, form_data) {
+function postData(endpoint, form_data, formObject) {
   var config = {
     headers: {
       "X-CSRF-TOKEN": jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr("content")

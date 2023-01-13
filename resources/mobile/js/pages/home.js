@@ -1,5 +1,11 @@
 import { base_url } from "../../../js/module/base_url";
-import { $, getData, postData, serializeObject, ToastNotification } from "../../../js/module/helper";
+import {
+    $,
+    getData,
+    postData,
+    serializeObject,
+    ToastNotification,
+} from "../../../js/module/helper";
 
 window.showModalQty = async function (e) {
     let data = JSON.parse(e);
@@ -14,30 +20,31 @@ window.showModalQty = async function (e) {
     );
 };
 
-
-window.cekPin = async () =>{
-   try {
-    let cekPasswordPenarikan = await getData("/ceking-password-penarikan");
-    if(cekPasswordPenarikan.data.password_pernarikan === "-"){
-        window.location.href = base_url +'/ganti-password-penarikan'
+window.cekPin = async () => {
+    try {
+        let cekPasswordPenarikan = await getData("/ceking-password-penarikan");
+        if (cekPasswordPenarikan.data.password_pernarikan === "-") {
+            window.location.href = base_url + "/ganti-password-penarikan";
+        }
+    } catch (error) {
+        console.log(error, "pin");
     }
-   } catch (error) {
-    console.log(error,'pin')
-   }
-}
+};
 
-window.simpanPasswordPenarikan = async  function (e){
+window.simpanPasswordPenarikan = async function (e) {
     e.preventDefault();
     let form_data = $("#form_setting_password_penarikan").serializeArray();
-    let databaru = serializeObject(form_data);
 
-    console.log(databaru)
     try {
-      await postData('/simpan-password-penarikan',databaru)
-
-      ToastNotification('success','Password pernarikan berhasil diseting')
+        await postData("/simpan-password-penarikan", form_data, true);
+        ToastNotification("success", "Password pernarikan berhasil diseting");
+        setTimeout(() => {
+            window.location.href = base_url + "/dashboard-member";
+        }, 3000);
     } catch (error) {
-        ToastNotification('info',error?.response?.pesan || "Terjadi kesalahan saat mengirim data")
+        ToastNotification(
+            "info",
+            error?.response?.pesan || "Terjadi kesalahan saat mengirim data"
+        );
     }
-
-}
+};
